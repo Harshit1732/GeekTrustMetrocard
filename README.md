@@ -33,3 +33,7 @@ in the build.gradle if your main class has changed.
 
 You can refer our help documents [here](https://help.geektrust.in)
 You can read build instructions [here](https://github.com/geektrust/coding-problem-artefacts/tree/master/Java)
+
+# Result
+![geektrustscore](https://github.com/Harshit1732/GeekTrustMetrocard/assets/90718298/288e5e73-83b3-472a-84b1-046c4e8d2e6b)
+ 
