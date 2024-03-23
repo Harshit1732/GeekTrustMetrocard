@@ -2,7 +2,7 @@ package com.geektrust.backend.Commands;
 
 import com.geektrust.backend.Constants.CommonConstant;
 import com.geektrust.backend.entities.MetroCard;
-import com.geektrust.backend.services.Metrocardservice;
+import com.geektrust.backend.services.Metrocard.Metrocardservice;
 
 import java.util.List;
 

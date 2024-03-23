@@ -3,7 +3,7 @@ package com.geektrust.backend.Commands;
 import com.geektrust.backend.Constants.CommonConstant;
 import com.geektrust.backend.entities.PassengerType;
 import com.geektrust.backend.entities.Station;
-import com.geektrust.backend.services.Stationservice;
+import com.geektrust.backend.services.Station.Stationservice;
 
 import java.util.*;
 

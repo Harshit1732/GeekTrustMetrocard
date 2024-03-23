@@ -4,25 +4,26 @@ import java.util.HashMap;
 
 public class Station {
 
-    private StationType stationType;
+    private final StationType stationType;
     private Integer totalCollection;
     private Integer totalDiscount;
     private HashMap<String, Integer> passengerCount;
 
     public Station(StationType stationType, Integer totalCollection, Integer totalDiscount) {
-        this.stationType = stationType;
-        this.totalDiscount = totalDiscount;
-        this.totalCollection = totalCollection;
-        this.passengerCount = new HashMap<>();
+
+        this.stationType= stationType;
+        setTotalDiscount(totalDiscount);
+        setTotalCollection(totalCollection);
+        setPassengerCount(new HashMap<>());
     }
 
     public StationType getStationType() {
         return stationType;
     }
 
-    public void setStationType(StationType stationType) {
-        this.stationType = stationType;
-    }
+//    public void setStationType(StationType stationType) {
+//        this.stationType = stationType;
+//    }
 
     public HashMap<String, Integer> getPassengerCount() {
         return this.passengerCount;

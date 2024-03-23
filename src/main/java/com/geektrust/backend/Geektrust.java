@@ -21,7 +21,6 @@ public class Geektrust {
             Scanner sc = new Scanner(fis);
             while (sc.hasNextLine()) {
                 List<String> tokens = Arrays.asList(sc.nextLine().split(" "));
-                //System.out.println(tokens.get(0));
                 commandInvoker.executeCommand(tokens.get(0), tokens);
             }
             sc.close();

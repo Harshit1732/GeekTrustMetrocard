@@ -2,16 +2,16 @@ package com.geektrust.backend.Commands;
 
 import com.geektrust.backend.Constants.CommonConstant;
 import com.geektrust.backend.entities.*;
-import com.geektrust.backend.services.Stationservice;
+import com.geektrust.backend.services.checkIn.CheckInservice;
 
 import java.util.List;
 
 public class CheckInCommand implements Icommand {
 
-    private final Stationservice stationservice;
+    private final CheckInservice checkInservice;
 
-    public CheckInCommand(Stationservice stationservice) {
-        this.stationservice = stationservice;
+    public CheckInCommand(CheckInservice checkInservice) {
+        this.checkInservice = checkInservice ;
     }
 
     @Override
@@ -20,6 +20,6 @@ public class CheckInCommand implements Icommand {
         MetroCard card = new MetroCard(tokens.get(CommonConstant.ONE), CommonConstant.ZERO);
         Passenger passenger = new Passenger(PassengerType.valueOf(tokens.get(CommonConstant.TWO)), card, false);
         Station station = new Station(StationType.valueOf(tokens.get(CommonConstant.THREE)), CommonConstant.ZERO, CommonConstant.ZERO);
-        stationservice.checkIn(card, passenger, station);
+        checkInservice.checkIn(card, passenger, station);
     }
 }

@@ -5,7 +5,14 @@ import com.geektrust.backend.Commands.CheckInCommand;
 import com.geektrust.backend.Commands.CommandInvoker;
 import com.geektrust.backend.Commands.PrintSummaryCommand;
 import com.geektrust.backend.repositories.*;
-import com.geektrust.backend.services.*;
+import com.geektrust.backend.services.Metrocard.Metrocardservice;
+import com.geektrust.backend.services.Metrocard.MetrocardserviceImpl;
+import com.geektrust.backend.services.Passenger.Passengerservice;
+import com.geektrust.backend.services.Passenger.PassengerserviceImpl;
+import com.geektrust.backend.services.Station.Stationservice;
+import com.geektrust.backend.services.Station.StationserviceImpl;
+import com.geektrust.backend.services.checkIn.CheckInservice;
+import com.geektrust.backend.services.checkIn.CheckInserviceImpl;
 
 public class ApplicationConfiguration {
 
@@ -20,10 +27,12 @@ public class ApplicationConfiguration {
     private final BalanceCommand balanceCommand = new BalanceCommand(metrocardservice);
     private final Passengerservice passengerservice = new PassengerserviceImpl(passengerrepositoryservice);
 
+    private  final Stationservice stationservice= new StationserviceImpl(stationrepositoryservice);
+
 
     //Commands
-    private final Stationservice stationservice = new StationserviceImpl(metrocardservice, stationrepositoryservice, passengerservice);
-    private final CheckInCommand checkInCommand = new CheckInCommand(stationservice);
+    private final CheckInservice checkInservice = new CheckInserviceImpl(metrocardservice, stationservice, passengerservice);
+    private final CheckInCommand checkInCommand = new CheckInCommand(checkInservice);
     private final PrintSummaryCommand printSummaryCommand = new PrintSummaryCommand(stationservice);
 
 

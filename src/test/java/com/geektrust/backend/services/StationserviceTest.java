@@ -2,6 +2,10 @@ package com.geektrust.backend.services;
 
 import com.geektrust.backend.entities.*;
 import com.geektrust.backend.repositories.*;
+import com.geektrust.backend.services.Metrocard.MetrocardserviceImpl;
+import com.geektrust.backend.services.Passenger.PassengerserviceImpl;
+import com.geektrust.backend.services.Station.StationserviceImpl;
+import com.geektrust.backend.services.checkIn.CheckInserviceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,6 +24,8 @@ public class StationserviceTest {
     private MetrocardserviceImpl metrocardservice;
     private StationserviceImpl stationservice;
 
+    private CheckInserviceImpl checkInservice;
+
     @BeforeEach
     void setup() {
         this.metrocardrepositoryservice = new MetrocardrepositoryserviceImpl();
@@ -27,7 +33,8 @@ public class StationserviceTest {
         this.stationrepositoryservice = new StationrepositoryserviceImpl();
         this.metrocardservice = new MetrocardserviceImpl(this.metrocardrepositoryservice);
         this.passengerservice = new PassengerserviceImpl(this.passengerrepositoryservice);
-        this.stationservice = new StationserviceImpl(metrocardservice, stationrepositoryservice, passengerservice);
+        this.stationservice = new StationserviceImpl(stationrepositoryservice);
+        this.checkInservice= new CheckInserviceImpl(metrocardservice,stationservice,passengerservice);
         MetroCard card1 = new MetroCard("MC1", 600);
         MetroCard card2 = new MetroCard("MC2", 200);
         MetroCard card3 = new MetroCard("MC3", 50);
@@ -44,7 +51,7 @@ public class StationserviceTest {
         Passenger passenger = new Passenger(PassengerType.ADULT, card, false);
         Station station = new Station(StationType.CENTRAL, 0, 0);
         stationrepositoryservice.saveData(station);
-        stationservice.checkIn(card, passenger, station);
+        checkInservice.checkIn(card, passenger, station);
         assertEquals((Integer) 200, station.getTotalCollection());
         assertEquals((Integer) 0, station.getTotalDiscount());
     }
@@ -56,7 +63,7 @@ public class StationserviceTest {
         Passenger passenger = new Passenger(PassengerType.KID, card, false);
         Station station = new Station(StationType.CENTRAL, 0, 0);
         stationrepositoryservice.saveData(station);
-        stationservice.checkIn(card, passenger, station);
+        checkInservice.checkIn(card, passenger, station);
         assertEquals((Integer) 50, station.getTotalCollection());
         assertEquals((Integer) 0, station.getTotalDiscount());
     }
@@ -68,7 +75,7 @@ public class StationserviceTest {
         Passenger passenger = new Passenger(PassengerType.ADULT, card, true);
         Station station = new Station(StationType.AIRPORT, 0, 0);
         stationrepositoryservice.saveData(station);
-        stationservice.checkIn(card, passenger, station);
+        checkInservice.checkIn(card, passenger, station);
         assertEquals((Integer) 100, station.getTotalCollection());
         assertEquals((Integer) 100, station.getTotalDiscount());
     }

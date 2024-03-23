@@ -1,7 +1,8 @@
-package com.geektrust.backend.services;
+package com.geektrust.backend.services.Passenger;
 
 import com.geektrust.backend.entities.Passenger;
 import com.geektrust.backend.repositories.Passengerrepositoryservice;
+import com.geektrust.backend.services.Passenger.Passengerservice;
 
 public class PassengerserviceImpl implements Passengerservice {
     private final Passengerrepositoryservice passengerrepositoryservice;
@@ -17,6 +18,17 @@ public class PassengerserviceImpl implements Passengerservice {
 
     @Override
     public Passenger getPassenger(Passenger passenger) {
-        return passengerrepositoryservice.getPassenger(passenger);
+        Passenger fetchPassenger= passengerrepositoryservice.getPassenger(passenger);
+        return fetchPassenger==null?passenger:fetchPassenger;
+    }
+
+    @Override
+    public boolean getPassengerJourney(Passenger passenger) {
+        return passenger.getHasmadejourney();
+    }
+
+    @Override
+    public void setPassengerJourney(Passenger passenger, boolean journey) {
+        passenger.setHasmadejourney(journey);
     }
 }

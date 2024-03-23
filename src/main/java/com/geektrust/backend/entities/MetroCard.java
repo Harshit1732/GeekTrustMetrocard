@@ -3,11 +3,11 @@ package com.geektrust.backend.entities;
 public class MetroCard {
     private final String cardNumber;
 
-    private Integer balance;
+    private  Integer balance;
 
     public MetroCard(String cardNumber, Integer balance) {
-        this.balance = balance;
-        this.cardNumber = cardNumber;
+      this.cardNumber=cardNumber;
+       setBalance(balance);
     }
 
     public Integer getBalance() {
@@ -21,5 +21,10 @@ public class MetroCard {
     public String getCardNumber() {
         return this.cardNumber;
     }
+
+//    public  void setCardNumber(String cardNumber)
+//    {
+//        this.cardNumber= cardNumber;
+//    }
 
 }
